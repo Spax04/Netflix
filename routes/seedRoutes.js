@@ -39,7 +39,7 @@ seedRouter.get(
 )
 
 
-// 
+//  Takeing random 8 elements and attaching those ids
 const seedLists = async (array, type) => {
   for (let i = 0; i < array.length; i++) {
     const isSeries = type === 'movies' ? false : true

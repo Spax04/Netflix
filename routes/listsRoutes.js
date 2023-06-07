@@ -23,16 +23,17 @@ listsRouter.get('/', isAuth, async (req, res) => {
           { $match: { type: typeQuery, genre: genreQuery } }
         ])
         list = await List.populate(list, { path: 'contents' })
+
       } else {
         list = await List.aggregate([
           { $sample: { size: 10 } },
           { $match: { type: typeQuery } }
         ])
-
         list = await List.populate(list, { path: 'contents' })
+        
       }
     } else {
-      list = await List.find().populate('contents') // Retrives whole object
+      list = await List.find().populate('contents') // Find all lists and add random content to "contents" property
     }
     res.status(200).json(list)
   } catch (err) {
