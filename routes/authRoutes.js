@@ -13,7 +13,6 @@ authRouter.post(
 
     if (user) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
-        console.log('success');
         res.send({
           _id: user._id,
           username: user.username,

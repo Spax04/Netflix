@@ -5,19 +5,18 @@ import User from '../models/userSchema.js'
 
 const userRouter = express.Router()
 
+// updating user favorit list
 userRouter.post(
   '/',
   isAuth,
   expressAsyncHandler(async (req, res) => {
     try {
-      console.log(req.body)
-      console.log(req.body._id)
+
       const user = await User.findOne({ _id: req.body._id })
-      console.log(user)
       if (user) {
         // Update the user object with the new data
         user.myList = req.body.myList // Assuming 'name' is the field you want to update
-console.log(req.body.myList);
+
         // Save the updated user
         const updatedUser = await user.save()
 
